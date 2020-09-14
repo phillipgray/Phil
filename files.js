@@ -300,13 +300,16 @@ function openFile(e) {
 }
 
 function convertJSONToPuzzle(puz) {
-  createNewPuzzle();
-  if (puz.size.rows != DEFAULT_SIZE || puz.size.cols != DEFAULT_SIZE) {
-    new Notification("Oops. Can only open 15 x 15 puzzles.", 10);
+  if (puz.size.rows != puz.size.cols) {
+    new Notification("Oops. Can only open square puzzles.", 10);
     return;
   }
-  xw.rows = DEFAULT_SIZE;
-  xw.cols = DEFAULT_SIZE;
+  let rowSize = puz.size.rows;
+  let colSize = puz.size.cols;
+
+  createNewPuzzle(rowSize, colSize);
+  xw.rows = rowSize;
+  xw.cols = colSize;
   // Update puzzle title, author
   xw.title = puz.title || DEFAULT_TITLE;
   if (puz.title.slice(0,8).toUpperCase() == "NY TIMES") {
