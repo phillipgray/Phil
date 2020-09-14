@@ -175,6 +175,36 @@ kbd {
   float: left;
 }
 
+#container {
+  position: relative;
+}
+
+#custom-size-form {
+  width: auto;
+  height: auto;
+  position: absolute;
+  background-color: var(--med-grey);
+
+  float: right;
+
+  position: relative;
+  top: 20;
+  left: -50%; /* or right 50% */
+  text-align: left;
+  z-index: 10;
+  padding: 10;
+
+  border: 2px solid var(--black);
+}
+
+#custom-size-form menu{
+  float: right;
+}
+
+#custom-size-form .form-content h1 {
+  color: var(--lt-grey);
+}
+
 .notification {
   font-size: 9.5pt;
   line-height: 11pt;

@@ -278,6 +278,12 @@ current.update();
 //____________________
 // F U N C T I O N S
 
+function createNewCustomPuzzle(e) {
+  e.preventDefault();
+  hideSizeForm();
+  let size = document.getElementById("puzzle-size").value;
+  createNewPuzzle(size, size);
+}
 function createNewPuzzle(rows, cols) {
   xw["clues"] = {};
   xw["title"] = DEFAULT_TITLE;
@@ -609,8 +615,8 @@ function getWordAt(row, col, direction, setCurrentWordIndices) {
 function getWordIndices(text, position) {
   let start = text.slice(0, position).lastIndexOf(BLACK);
   start = (start == -1) ? 0 : start + 1;
-  let end = text.slice(position, DEFAULT_SIZE).indexOf(BLACK);
-  end = (end == -1) ? DEFAULT_SIZE : Number(position) + end;
+  let end = text.slice(position, xw.rows).indexOf(BLACK);
+  end = (end == -1) ? xw.rows : Number(position) + end;
   return [start, end];
 }
 
@@ -839,6 +845,18 @@ function showMenu(e) {
 
 function hideMenu(e) {
   e.target.classList.add("hidden");
+}
+
+function showSizeForm() {
+  let form = document.querySelector("#custom-size-form");
+  form.classList.remove("hidden");
+}
+
+function hideSizeForm(e) {
+  if (e) { e.preventDefault(); }
+
+  let form = document.querySelector("#custom-size-form");
+  form.classList.add("hidden");
 }
 
 function setDefault(e) {

@@ -13,9 +13,18 @@
   </div>
 
   <div id="toolbar">
-    <button id="new-grid" type="button" data-tooltip="New puzzle" onclick="createNewPuzzle()">
-      <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
-    </button>
+    <div id="new-menu" class="menu hidden" onmouseleave="hideMenu(event)">
+      <h4>Options:</h4>
+      <button id="new-grid" type="button" data-tooltip="New 15x15 puzzle" onclick="createNewPuzzle()">
+        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+      </button>
+      <button id="custom-grid" type="button" data-tooltip="New custom puzzle" onclick="showSizeForm()">
+        <i class="fa fa-calculator fa-fw" aria-hidden="true"></i>
+      </button>
+    </div>
+    <button id="new" type="button" data-tooltip="New puzzle" onmouseenter="showMenu(event)" onclick="doDefault(event)">
+        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+      </button>
     <button id="open-JSON" type="button" data-tooltip="Open puzzle..." onmouseenter="showMenu(event)" onclick="openPuzzle()">
       <i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i>
     </button>
@@ -66,7 +75,24 @@
     </button>
   </div>
 
-  <div id="main"></div>
+  <div id="container">
+    <div id="custom-size-form" class="form-content hidden">
+      <form>
+        <p><label>Puzzle size:
+          <input id="puzzle-size" type="number" min="2" value="15">
+        </label></p>
+        <menu>
+          <button onclick="hideSizeForm(event)">
+            <i class="fa fa-times fa-fw" aria-hidden="true"></i>
+          </button>
+          <button onclick="createNewCustomPuzzle(event)">
+            <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+          </button>
+        </menu>
+      </form>
+    </div>
+    <div id="main"></div>
+  </div>
 
   <div id="sidebar">
     <div class="half-sidebar">
